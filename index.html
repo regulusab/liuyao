@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-Hant-TW"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>六爻文王卦：起卦與解卦</title>
+<meta name="description" content="以易經六爻（文王卦、納甲筮法）起卦、裝卦與解卦：三錢搖卦、手動輸入、時間起卦、數字起卦；排出世應、納甲、六親、六獸、伏神、旬空、月建日辰，依用神逐條列出古籍出處，並附《周易》卦辭爻辭。">
+<meta property="og:title" content="六爻文王卦：起卦與解卦"><meta property="og:type" content="website">
+<meta property="og:url" content="https://regulusab.github.io/liuyao/">
+<meta name="theme-color" content="#2b2320">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+<script src="https://regulusab.github.io/nav/nav.js" defer></script>
+</head><body>
+<header class="top"><h1>六爻文王卦</h1><p class="sub">起卦・裝卦・解卦　每條斷語附古籍出處</p></header>
+<main>
+<section id="form" class="card noprint">
+  <div class="row"><label for="cat">所問之事</label><select id="cat"></select></div>
+  <div class="row" id="genderRow" hidden><span class="lab">問卦者</span>
+    <label class="rb"><input type="radio" name="g" value="m" checked> 男（問女方，用妻財）</label>
+    <label class="rb"><input type="radio" name="g" value="f"> 女（問男方，用官鬼）</label></div>
+  <div class="row"><label for="q">所問內容（選填）</label><input id="q" maxlength="60" placeholder="例：這筆投資能否獲利"></div>
+  <p class="hint">依本站規則，不提供健康疾病方面的占斷。</p>
+
+  <h2>一、起卦方式</h2>
+  <div class="tabs" role="tablist">
+    <button type="button" data-m="coin" class="on">三錢搖卦</button><button type="button" data-m="manual">手動輸入</button><button type="button" data-m="time">時間起卦</button><button type="button" data-m="num">數字起卦</button>
+  </div>
+  <div class="pane" data-p="coin">
+    <p class="hint">依《卜筮正宗》以錢代蓍法：一背為單（少陽）、二背為拆（少陰）、三背為重（老陽，動）、三字為交（老陰，動），自初爻往上擲六次。</p>
+    <div class="coinbox"><div id="coins" class="coins" aria-live="polite"></div>
+      <div class="btns"><button type="button" id="toss" class="pri">擲一次（第 1 爻）</button><button type="button" id="tossAll">一次擲完六爻</button><button type="button" id="tossReset">重擲</button></div>
+      <ol id="tossLog" class="tosslog" reversed></ol></div>
+  </div>
+  <div class="pane" data-p="manual" hidden>
+    <p class="hint">自己用三枚錢幣擲好後，逐爻選擇結果（由初爻到上爻）。</p>
+    <div id="manualRows" class="manual"></div>
+  </div>
+  <div class="pane" data-p="time" hidden>
+    <p class="hint">依《梅花易數》年月日時起例：年支數＋農曆月＋農曆日為上卦，再加時支數為下卦，總數除六為動爻。農曆依下方占卜時間與地點（地方平時、所在地合朔定初一）。</p>
+  </div>
+  <div class="pane" data-p="num" hidden>
+    <p class="hint">依《梅花易數》物數占例：所得之數作上卦，時支數作下卦，兩數相加除六取動爻。</p>
+    <div class="row"><label for="num">數字</label><input id="num" type="number" inputmode="numeric" min="1" value="" placeholder="例：368"></div>
+  </div>
+
+  <h2>二、占卜時間與地點</h2>
+  <div class="row"><span class="lab">時間</span>
+    <label class="rb"><input type="radio" name="tm" value="now" checked> 現在（換算為所在地地方平時）</label>
+    <label class="rb"><input type="radio" name="tm" value="set"> 自行輸入（視為地方平時）</label></div>
+  <div class="row" id="setTime" hidden><input id="date" type="date"><input id="time" type="time"></div>
+  <div class="row"><label for="city">地點</label><select id="city"></select></div>
+  <div class="row"><label for="lon">經度</label><input id="lon" type="number" step="0.0001" inputmode="decimal"><span class="hint inl">東經為正、西經為負</span></div>
+  <p class="hint">命理時間一律用地方平時：輸入的時間照輸入使用；交節氣換成此經度的地方平時（世界時＋經度×4 分）定月建；日柱 0:00 換日；東經 70° 以西日柱干支進一位（日期不動）。</p>
+  <div class="go"><button type="button" id="go" class="pri big">排盤解卦</button></div>
+</section>
+
+<section id="result" hidden></section>
+
+<section id="about" class="card">
+  <details><summary>本站說明與資料來源</summary><div id="sources"></div></details>
+</section>
+</main>
+<footer class="foot">內容僅供參考・古籍原文取自公有領域版本，未改用字</footer>
+<script src="app.js"></script>
+</body></html>
